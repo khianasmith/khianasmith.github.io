@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply — Coaching with Khiana Smith</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #FDF0F3;
+    --warm-white: #FFF7F9;
+    --dark: #1E1E1E;
+    --rose: #E8849A;
+    --rose-light: #F0AABB;
+    --muted: #9C8089;
+    --border: #F5D8DF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--warm-white);
+    color: var(--dark);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,247,249,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400; letter-spacing: 0.08em;
+    color: var(--dark); text-decoration: none;
+  }
+  .nav-back {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-back:hover { color: var(--rose); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #3D1A24 0%, #261018 50%, #160A10 100%);
+    padding: 160px 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-texture {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23E8849A'/%3E%3C/svg%3E");
+  }
+  .hero-line {
+    position: absolute; left: 0; right: 0; top: 50%;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    opacity: 0.3;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--rose);
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 300; line-height: 1.1;
+    color: #FFF7F9;
+    margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--rose-light); }
+  .hero-sub {
+    font-size: 15px; font-weight: 300; line-height: 1.8;
+    color: rgba(255,247,249,0.55);
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  /* FORM SECTION */
+  .form-section {
+    padding: 80px 48px 120px;
+    max-width: 760px; margin: 0 auto;
+  }
+
+  .form-intro {
+    text-align: center; margin-bottom: 64px;
+    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .form-intro p {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: var(--muted); max-width: 520px; margin: 0 auto;
+  }
+
+  /* FORM GROUPS */
+  .form-group {
+    margin-bottom: 40px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .form-group.visible { opacity: 1; transform: translateY(0); }
+
+  .form-group label {
+    display: block;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--dark);
+    margin-bottom: 12px;
+  }
+  .form-group .label-hint {
+    font-size: 13px; font-weight: 300; letter-spacing: 0;
+    text-transform: none; color: var(--muted);
+    margin-left: 8px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px; font-weight: 300;
+    color: var(--dark);
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    appearance: none;
+    border-radius: 0;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(232,132,154,0.1);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #C8B8BC; font-weight: 300;
+  }
+  .form-group textarea {
+    resize: vertical; min-height: 120px; line-height: 1.7;
+  }
+
+  /* TWO COL */
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* DIVIDER */
+  .form-divider {
+    margin: 56px 0 48px;
+    display: flex; align-items: center; gap: 20px;
+    opacity: 0; animation: fadeUp 0.8s 1s forwards;
+  }
+  .form-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .form-divider span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic;
+    color: var(--muted); white-space: nowrap; letter-spacing: 0.04em;
+  }
+
+  /* RADIO / CHECKBOX OPTIONS */
+  .option-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .option-item {
+    position: relative;
+  }
+  .option-item input[type="radio"],
+  .option-item input[type="checkbox"] {
+    position: absolute; opacity: 0; width: 0; height: 0;
+  }
+  .option-item label {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    background: var(--warm-white);
+    cursor: pointer;
+    font-size: 14px; font-weight: 300;
+    letter-spacing: 0; text-transform: none;
+    color: var(--dark);
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 0;
+  }
+  .option-item input:checked + label {
+    border-color: var(--rose);
+    background: #FFF0F3;
+    color: var(--dark);
+  }
+  .option-item label::before {
+    content: '';
+    width: 16px; height: 16px; flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .option-item input:checked + label::before {
+    border-color: var(--rose);
+    background: var(--rose);
+  }
+
+  /* SUBMIT */
+  .submit-block {
+    margin-top: 64px; text-align: center;
+    opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
+  }
+  .submit-note {
+    font-size: 13px; font-weight: 300; line-height: 1.8;
+    color: var(--muted); margin-bottom: 32px;
+    max-width: 440px; margin-left: auto; margin-right: auto;
+  }
+  .submit-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #FFF7F9;
+    background: var(--dark);
+    padding: 22px 64px;
+    border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  .submit-btn:hover { background: var(--rose); transform: translateY(-2px); }
+  .submit-privacy {
+    font-size: 11px; letter-spacing: 0.08em;
+    color: #C8B8BC; display: block;
+  }
+
+  /* THANK YOU STATE */
+  .thankyou {
+    display: none;
+    text-align: center;
+    padding: 80px 48px;
+    max-width: 600px; margin: 0 auto;
+  }
+  .thankyou-line {
+    width: 1px; height: 64px;
+    background: linear-gradient(to bottom, transparent, var(--rose));
+    margin: 0 auto 40px;
+  }
+  .thankyou h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300; line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .thankyou h2 em { font-style: italic; color: var(--rose); }
+  .thankyou p {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: var(--muted); margin-bottom: 16px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #160A10;
+    padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: rgba(255,247,249,0.3);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 130px 24px 60px; }
+    .form-section { padding: 60px 24px 80px; }
+    .form-row { grid-template-columns: 1fr; }
+    .option-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="coaching-page.html" class="nav-logo">Khiana Smith</a>
+  <a href="coaching-page.html" class="nav-back">← Back to coaching</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Premium 1:1 Coaching · Application</p>
+    <h1 class="hero-title">Let's see if we're<br>the right <em>fit</em>.</h1>
+    <p class="hero-sub">Fill in the form below honestly — the more you share, the better I can understand where you are and what you need. There's no right or wrong answer.</p>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-section">
+  <div class="form-intro">
+    <p>This application takes about 5 minutes. Once submitted, Khiana will personally review your answers and be in touch within 48 hours to let you know next steps.</p>
+  </div>
+
+  <form id="applicationForm" action="https://formspree.io/f/mpqjegpj" method="POST">
+
+    <!-- PERSONAL DETAILS -->
+    <div class="form-divider">
+      <div class="form-divider-line"></div>
+      <span>About you</span>
+      <div class="form-divider-line"></div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" name="First Name" placeholder="Your first name" required />
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="Last Name" placeholder="Your last name" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="Email" placeholder="your@email.com" required />
+      </div>
+      <div class="form-group">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" name="Phone" placeholder="+61 000 000 000" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Instagram Handle <span class="label-hint">optional but helpful</span></label>
+      <input type="text" name="Instagram" placeholder="@yourhandle" />
+    </div>
+
+    <!-- FITNESS -->
+    <div class="form-divider">
+      <div class="form-divider-line"></div>
+      <span>Where you're at right now</span>
+      <div class="form-divider-line"></div>
+    </div>
+
+    <div class="form-group">
+      <label>How would you describe your current fitness level?</label>
+      <div class="option-grid">
+        <div class="option-item">
+          <input type="radio" name="Fitness Level" id="f1" value="Complete beginner" />
+          <label for="f1">Complete beginner</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="Fitness Level" id="f2" value="Some experience but inconsistent" />
+          <label for="f2">Some experience, inconsistent</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="Fitness Level" id="f3" value="Train regularly but not seeing results" />
+          <label for="f3">Train regularly, no results</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="Fitness Level" id="f4" value="Active but need direction" />
+          <label for="f4">Active but need direction</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Tell me where you're at right now <span class="label-hint">be honest, this is a safe space</span></label>
+      <textarea name="Current Situation" placeholder="How are you feeling about your body, your energy, your mindset? What does a typical day look like for you right now?" required></textarea>
+    </div>
+
+    <!-- GOALS -->
+    <div class="form-divider">
+      <div class="form-divider-line"></div>
+      <span>What you want</span>
+      <div class="form-divider-line"></div>
+    </div>
+
+    <div class="form-group">
+      <label>What are your main goals? <span class="label-hint">select all that apply</span></label>
+      <div class="option-grid">
+        <div class="option-item">
+          <input type="checkbox" name="Goals" id="g1" value="Lose weight" />
+          <label for="g1">Lose weight</label>
+        </div>
+        <div class="option-item">
+          <input type="checkbox" name="Goals" id="g2" value="Build my physique" />
+          <label for="g2">Build my physique</label>
+        </div>
+        <div class="option-item">
+          <input type="checkbox" name="Goals" id="g3" value="Build confidence" />
+          <label for="g3">Build confidence</label>
+        </div>
+        <div class="option-item">
+          <input type="checkbox" name="Goals" id="g4" value="Fix my mindset" />
+          <label for="g4">Fix my mindset</label>
+        </div>
+        <div class="option-item">
+          <input type="checkbox" name="Goals" id="g5" value="Build healthy habits" />
+          <label for="g5">Build healthy habits</label>
+        </div>
+        <div class="option-item">
+          <input type="checkbox" name="Goals" id="g6" value="Feel like myself again" />
+          <label for="g6">Feel like myself again</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>In your own words — what does your dream outcome look like? <span class="label-hint">paint the picture</span></label>
+      <textarea name="Dream Outcome" placeholder="If everything went perfectly over the next 12 weeks, what would your life look like? How would you feel? What would have changed?" required></textarea>
+    </div>
+
+    <!-- PAST ATTEMPTS -->
+    <div class="form-divider">
+      <div class="form-divider-line"></div>
+      <span>What you've tried before</span>
+      <div class="form-divider-line"></div>
+    </div>
+
+    <div class="form-group">
+      <label>What have you tried before to reach your goals?</label>
+      <textarea name="Tried Before" placeholder="e.g. gym programs, diets, other coaches, apps, motivation cycles... what happened and why didn't it stick?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>What has stopped you from achieving your goals in the past?</label>
+      <textarea name="What Stopped You" placeholder="Be honest — was it consistency, confidence, not knowing what to do, life getting in the way, self-doubt? There's no wrong answer here." required></textarea>
+    </div>
+
+    <!-- WHY KHIANA -->
+    <div class="form-divider">
+      <div class="form-divider-line"></div>
+      <span>Why now</span>
+      <div class="form-divider-line"></div>
+    </div>
+
+    <div class="form-group">
+      <label>Why do you want to work with Khiana specifically?</label>
+      <textarea name="Why Khiana" placeholder="What is it about Khiana's coaching that feels like the right fit for you?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Why is now the right time for you?</label>
+      <textarea name="Why Now" placeholder="What's changed or what's made you decide to take this step now?" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>How committed are you to doing the work? <span class="label-hint">be real with yourself</span></label>
+      <div class="option-grid">
+        <div class="option-item">
+          <input type="radio" name="Commitment Level" id="c1" value="I'm curious but not fully sure yet" />
+          <label for="c1">Curious but not fully sure</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="Commitment Level" id="c2" value="I'm interested and almost ready" />
+          <label for="c2">Interested, almost ready</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="Commitment Level" id="c3" value="I'm ready and I'll show up" />
+          <label for="c3">Ready and I'll show up</label>
+        </div>
+        <div class="option-item">
+          <input type="radio" name="Commitment Level" id="c4" value="I'm all in — let's go" />
+          <label for="c4">All in — let's go</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Anything else you want Khiana to know? <span class="label-hint">optional</span></label>
+      <textarea name="Anything Else" placeholder="Injuries, circumstances, anything you want to mention before your chat..."></textarea>
+    </div>
+
+    <!-- Hidden fields for Formspree -->
+    <input type="hidden" name="_subject" value="New Coaching Application" />
+
+    <!-- SUBMIT -->
+    <div class="submit-block">
+      <p class="submit-note">Once you submit, Khiana will personally read your application and be in touch within 48 hours. Spots are limited so the sooner you apply, the better.</p>
+      <button type="submit" class="submit-btn">Submit My Application</button>
+      <span class="submit-privacy">Your answers are private and only seen by Khiana</span>
+    </div>
+
+  </form>
+
+  <!-- THANK YOU -->
+  <div class="thankyou" id="thankyou">
+    <div class="thankyou-line"></div>
+    <h2>You just bet on <em>yourself</em>.</h2>
+    <p>Your application has been received. Khiana will personally read every word and be in touch within 48 hours.</p>
+    <p>In the meantime — notice how it felt to finally do this. That feeling? That's the beginning.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Khiana Smith</div>
+</footer>
+
+<script>
+  // Scroll reveal for form groups
+  const groups = document.querySelectorAll('.form-group');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  groups.forEach(el => observer.observe(el));
+
+  // Form submit — sends via Formspree to Khiana's email
+  document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.7';
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mpqjegpj', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('thankyou').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Submit My Application';
+        btn.style.opacity = '1';
+        alert('Something went wrong — please try again or DM Khiana on Instagram.');
+      }
+
+    } catch(err) {
+      btn.textContent = 'Submit My Application';
+      btn.style.opacity = '1';
+      alert('Something went wrong — please try again or DM Khiana on Instagram.');
+    }
+  });
+</script>
+
+</body>
+</html>

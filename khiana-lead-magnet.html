@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -350,6 +351,10 @@
           <label>Email Address</label>
           <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
         </div>
+        <div class="field">
+          <label>Instagram Handle <span style="font-size:9px;color:#C4A0AC;letter-spacing:0.1em;">(optional)</span></label>
+          <input type="text" id="instagram" placeholder="@yourhandle">
+        </div>
         <button class="submit-btn" onclick="handleSubmit()">
           <span>Send me the free guide →</span>
         </button>
@@ -388,6 +393,7 @@
   function handleSubmit() {
     const name = document.getElementById('firstName').value.trim();
     const email = document.getElementById('email').value.trim();
+    const instagram = document.getElementById('instagram').value.trim();
     const btn = document.querySelector('.submit-btn span');
 
     if (!name) {
@@ -419,6 +425,12 @@
 
     form.appendChild(emailInput);
     form.appendChild(nameInput);
+
+    const igInput = document.createElement('input');
+    igInput.name = 'INSTAGRAM';
+    igInput.value = instagram.startsWith('@') ? instagram : (instagram ? '@' + instagram : '');
+    form.appendChild(igInput);
+
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);

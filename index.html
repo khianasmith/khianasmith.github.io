@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium 1:1 Coaching with Khiana Smith</title>
+<title>Premium 1:1 Coaching</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,7 +50,7 @@
     background: var(--dark);
     padding: 12px 28px;
     border: none; cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
     text-decoration: none;
   }
   .nav-cta:hover { background: var(--gold); }
@@ -59,7 +60,8 @@
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0 0 80px 0;
-    position: relative; overflow: hidden;
+    position: relative;
+    overflow: hidden;
     background: var(--dark);
   }
   .hero-bg {
@@ -68,7 +70,7 @@
   }
   .hero-texture {
     position: absolute; inset: 0; opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23E8849A'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Ccircle cx='30' cy='30' r='1' fill='%23B8956A'/%3E%3C/svg%3E");
   }
   .hero-gold-line {
     position: absolute; left: 0; right: 0; top: 50%;
@@ -77,9 +79,11 @@
   }
   .hero-content {
     position: relative; z-index: 2;
-    max-width: 900px; padding: 0 48px;
+    max-width: 900px;
+    padding: 0 48px;
   }
   .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
     font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--gold);
     margin-bottom: 32px;
@@ -89,24 +93,30 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(52px, 8vw, 96px);
     font-weight: 300; line-height: 1.0;
-    color: var(--warm-white); margin-bottom: 32px;
+    color: var(--warm-white);
+    margin-bottom: 32px;
     opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
   }
-  .hero-title em { font-style: italic; color: var(--gold-light); }
+  .hero-title em {
+    font-style: italic; color: var(--gold-light);
+  }
   .hero-subtitle {
+    font-family: 'Jost', sans-serif;
     font-size: 16px; font-weight: 300; line-height: 1.8;
-    color: rgba(255,247,249,0.6); max-width: 540px;
+    color: rgba(250,248,244,0.6);
+    max-width: 540px;
     opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
   }
   .hero-scroll {
     position: absolute; bottom: 40px; left: 50%;
     transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
-    opacity: 0; animation: fadeUp 0.8s 1s forwards; z-index: 2;
+    opacity: 0; animation: fadeUp 0.8s 1s forwards;
+    z-index: 2;
   }
   .hero-scroll span {
     font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(255,247,249,0.35);
+    color: rgba(250,248,244,0.35);
   }
   .scroll-line {
     width: 1px; height: 48px;
@@ -114,7 +124,9 @@
     animation: scrollPulse 2s infinite;
   }
 
+  /* SECTIONS */
   section { padding: 100px 48px; }
+
   .container { max-width: 900px; margin: 0 auto; }
   .container-wide { max-width: 1100px; margin: 0 auto; }
 
@@ -130,202 +142,373 @@
     content: ''; flex: 1; max-width: 60px;
     height: 1px; background: var(--gold);
   }
-  .for-her-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .for-her-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: start;
+  }
   .for-her h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.15;
-    color: var(--dark); margin-bottom: 32px;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300; line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 32px;
   }
   .for-her h2 em { font-style: italic; color: var(--gold); }
-  .for-her p { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--muted); margin-bottom: 20px; }
+  .for-her p {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: var(--muted); margin-bottom: 20px;
+  }
   .feels-list { list-style: none; }
   .feels-list li {
-    padding: 18px 0; border-bottom: 1px solid var(--border);
-    font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--dark);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px; font-weight: 300; line-height: 1.6;
+    color: var(--dark);
     display: flex; gap: 16px; align-items: flex-start;
   }
-  .feels-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-family: 'Cormorant Garamond', serif; }
+  .feels-list li::before {
+    content: '—'; color: var(--gold); flex-shrink: 0;
+    font-family: 'Cormorant Garamond', serif;
+  }
 
   /* STORY */
   .story { background: #261018; color: var(--warm-white); }
-  .story-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .story-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
   .story-text .section-label { color: var(--gold); }
   .story-text h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(34px, 4.5vw, 52px); font-weight: 300; line-height: 1.15; margin-bottom: 28px;
+    font-size: clamp(34px, 4.5vw, 52px);
+    font-weight: 300; line-height: 1.15;
+    margin-bottom: 28px;
   }
   .story-text h2 em { font-style: italic; color: var(--gold-light); }
-  .story-text p { font-size: 15px; font-weight: 300; line-height: 1.9; color: rgba(255,247,249,0.65); margin-bottom: 20px; }
-  .story-credentials { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .credential { border: 1px solid rgba(232,132,154,0.35); padding: 20px; position: relative; }
-  .credential::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: var(--gold); }
-  .credential-title { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-  .credential-desc { font-size: 13px; font-weight: 300; color: rgba(255,247,249,0.55); line-height: 1.5; }
-  .story-image-block { position: relative; }
-  .story-accent { position: absolute; bottom: -20px; right: -20px; width: 120px; height: 120px; border: 1px solid rgba(232,132,154,0.2); z-index: -1; }
+  .story-text p {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: rgba(250,248,244,0.65);
+    margin-bottom: 20px;
+  }
+  .story-credentials {
+    margin-top: 40px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .credential {
+    border: 1px solid rgba(232,132,154,0.35);
+    padding: 20px;
+    position: relative;
+  }
+  .credential::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; width: 2px; height: 100%;
+    background: var(--gold);
+  }
+  .credential-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .credential-desc {
+    font-size: 13px; font-weight: 300;
+    color: rgba(250,248,244,0.55);
+    line-height: 1.5;
+  }
+  .story-image-block {
+    position: relative;
+  }
+  .story-image-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #3D1A24, #261018);
+    border: 1px solid rgba(232,132,154,0.25);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px;
+  }
+  .story-image-placeholder span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; font-style: italic;
+    color: rgba(250,248,244,0.25);
+    letter-spacing: 0.06em;
+  }
+  .image-note {
+    font-size: 11px; letter-spacing: 0.1em;
+    color: rgba(250,248,244,0.2); text-transform: uppercase;
+  }
+  .story-accent {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(184,149,106,0.2);
+    z-index: -1;
+  }
 
-  /* INCLUDED */
+  /* WHAT'S INCLUDED */
   .included { background: var(--sand); }
-  .included h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.15; margin-bottom: 16px; }
+  .included h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300; line-height: 1.15;
+    margin-bottom: 16px;
+  }
   .included h2 em { font-style: italic; color: var(--gold); }
-  .included-intro { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--muted); max-width: 560px; margin-bottom: 64px; }
-  .included-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 64px; }
-  .included-item { background: var(--warm-white); padding: 40px 32px; transition: transform 0.3s; }
+  .included-intro {
+    font-size: 15px; font-weight: 300; line-height: 1.8;
+    color: var(--muted); max-width: 560px; margin-bottom: 64px;
+  }
+  .included-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; margin-bottom: 64px;
+  }
+  .included-item {
+    background: var(--warm-white);
+    padding: 40px 32px;
+    transition: transform 0.3s;
+  }
   .included-item:hover { transform: translateY(-4px); }
-  .included-number { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: 20px; }
-  .included-title { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); margin-bottom: 12px; }
-  .included-desc { font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--muted); }
-  .investment-block { background: #261018; padding: 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
-  .investment-left h3 { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 300; font-style: italic; color: var(--gold-light); margin-bottom: 8px; }
-  .investment-price { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--warm-white); line-height: 1; }
-  .investment-price span { font-size: 16px; font-weight: 300; color: rgba(255,247,249,0.5); }
-  .investment-detail { font-size: 13px; font-weight: 300; color: rgba(255,247,249,0.45); margin-top: 8px; letter-spacing: 0.06em; }
+  .included-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300; color: var(--border);
+    line-height: 1; margin-bottom: 20px;
+  }
+  .included-title {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--dark);
+    margin-bottom: 12px;
+  }
+  .included-desc {
+    font-size: 14px; font-weight: 300; line-height: 1.8;
+    color: var(--muted);
+  }
+  .investment-block {
+    background: #261018;
+    padding: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 32px;
+  }
+  .investment-left h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; font-weight: 300; font-style: italic;
+    color: var(--gold-light); margin-bottom: 8px;
+  }
+  .investment-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; font-weight: 300; color: var(--warm-white);
+    line-height: 1;
+  }
+  .investment-price span {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px; font-weight: 300;
+    color: rgba(250,248,244,0.5);
+  }
+  .investment-detail {
+    font-size: 13px; font-weight: 300;
+    color: rgba(250,248,244,0.45);
+    margin-top: 8px; letter-spacing: 0.06em;
+  }
   .investment-cta {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--dark); background: var(--gold); padding: 20px 48px;
-    border: none; cursor: pointer; transition: background 0.3s; text-decoration: none; display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 20px 48px;
+    border: none; cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
   }
   .investment-cta:hover { background: var(--gold-light); }
 
   /* TRANSFORMATION */
   .transformation { background: var(--warm-white); }
-  .transformation h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.15; margin-bottom: 16px; text-align: center; }
+  .transformation h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300; line-height: 1.15;
+    margin-bottom: 16px;
+    text-align: center;
+  }
   .transformation h2 em { font-style: italic; color: var(--gold); }
-  .transformation-intro { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--muted); text-align: center; max-width: 520px; margin: 0 auto 72px; }
-  .before-after { display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; }
-  .ba-col { padding: 48px 40px; }
+  .transformation-intro {
+    font-size: 15px; font-weight: 300; line-height: 1.8;
+    color: var(--muted); text-align: center;
+    max-width: 520px; margin: 0 auto 72px;
+  }
+  .before-after {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 0; align-items: stretch;
+  }
+  .ba-col {
+    padding: 48px 40px;
+  }
   .ba-before { background: #FDEAEF; }
   .ba-after { background: #261018; }
-  .ba-label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 32px; }
+  .ba-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; margin-bottom: 32px;
+  }
   .ba-before .ba-label { color: var(--muted); }
   .ba-after .ba-label { color: var(--gold); }
   .ba-list { list-style: none; }
-  .ba-list li { padding: 14px 0; border-bottom: 1px solid; font-size: 15px; font-weight: 300; line-height: 1.5; }
+  .ba-list li {
+    padding: 14px 0; border-bottom: 1px solid;
+    font-size: 15px; font-weight: 300; line-height: 1.5;
+  }
   .ba-before .ba-list li { border-color: var(--border); color: var(--muted); }
-  .ba-after .ba-list li { border-color: rgba(255,255,255,0.08); color: rgba(255,247,249,0.75); }
-  .ba-divider { width: 1px; background: var(--border); display: flex; align-items: center; justify-content: center; }
-  .ba-divider-icon { width: 48px; height: 48px; background: var(--warm-white); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold); flex-shrink: 0; }
+  .ba-after .ba-list li { border-color: rgba(255,255,255,0.08); color: rgba(250,248,244,0.75); }
+  .ba-divider {
+    width: 1px; background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .ba-divider-icon {
+    width: 48px; height: 48px;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; color: var(--gold);
+    flex-shrink: 0;
+    z-index: 1;
+  }
 
   /* NOT FOR */
   .not-for { background: var(--sand); }
-  .not-for-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .not-for h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4.5vw, 48px); font-weight: 300; line-height: 1.15; margin-bottom: 40px; }
+  .not-for-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .not-for h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 4.5vw, 48px);
+    font-weight: 300; line-height: 1.15;
+    margin-bottom: 40px;
+  }
   .not-for h2 em { font-style: italic; color: var(--gold); }
   .check-list { list-style: none; }
-  .check-list li { padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--dark); display: flex; gap: 16px; }
+  .check-list li {
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+    font-size: 15px; font-weight: 300; line-height: 1.6;
+    color: var(--dark); display: flex; gap: 16px;
+  }
   .check-list li .icon { flex-shrink: 0; font-size: 16px; }
 
   /* FAQ */
   .faq { background: var(--warm-white); }
-  .faq h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 52px); font-weight: 300; margin-bottom: 56px; }
+  .faq h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 300; margin-bottom: 56px;
+  }
   .faq h2 em { font-style: italic; color: var(--gold); }
-  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; }
-  .faq-q { font-size: 16px; font-weight: 400; color: var(--dark); margin-bottom: 12px; }
-  .faq-a { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--muted); }
-
-  /* APPLICATION FORM SECTION */
-  .apply-section {
-    background: var(--sand);
-    padding: 100px 48px;
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 0;
   }
-  .apply-inner { max-width: 760px; margin: 0 auto; }
-  .apply-header { text-align: center; margin-bottom: 64px; }
-  .apply-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.15; margin-bottom: 16px; }
-  .apply-header h2 em { font-style: italic; color: var(--gold); }
-  .apply-header p { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--muted); max-width: 500px; margin: 0 auto; }
-
-  .form-divider { margin: 48px 0 40px; display: flex; align-items: center; gap: 20px; }
-  .form-divider-line { flex: 1; height: 1px; background: var(--border); }
-  .form-divider span { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: var(--muted); white-space: nowrap; letter-spacing: 0.04em; }
-
-  .form-group { margin-bottom: 32px; }
-  .form-group label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark); margin-bottom: 10px; }
-  .form-group .hint { font-weight: 300; letter-spacing: 0; text-transform: none; color: var(--muted); margin-left: 6px; }
-  .form-group input,
-  .form-group textarea {
-    width: 100%; font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 300;
-    color: var(--dark); background: var(--warm-white); border: 1px solid var(--border);
-    padding: 16px 20px; outline: none; border-radius: 0;
-    transition: border-color 0.3s, box-shadow 0.3s;
+  .faq-q {
+    font-size: 16px; font-weight: 400; color: var(--dark);
+    margin-bottom: 12px;
   }
-  .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(232,132,154,0.1); }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: #D4B8BE; font-weight: 300; }
-  .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-  .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .option-item { position: relative; }
-  .option-item input[type="radio"],
-  .option-item input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
-  .option-item label {
-    display: flex; align-items: center; gap: 12px; padding: 14px 18px;
-    border: 1px solid var(--border); background: var(--warm-white); cursor: pointer;
-    font-size: 14px; font-weight: 300; letter-spacing: 0; text-transform: none;
-    color: var(--dark); transition: border-color 0.2s, background 0.2s; margin-bottom: 0;
+  .faq-a {
+    font-size: 14px; font-weight: 300; line-height: 1.9;
+    color: var(--muted);
   }
-  .option-item input:checked + label { border-color: var(--gold); background: #FFF0F4; }
-  .option-item label::before {
-    content: ''; width: 16px; height: 16px; flex-shrink: 0;
-    border: 1px solid var(--border); border-radius: 50%;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .option-item input:checked + label::before { border-color: var(--gold); background: var(--gold); }
-
-  .submit-block { margin-top: 56px; text-align: center; }
-  .submit-note { font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--muted); margin-bottom: 28px; max-width: 440px; margin-left: auto; margin-right: auto; }
-  .submit-btn {
-    font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--warm-white); background: var(--dark);
-    padding: 22px 64px; border: none; cursor: pointer;
-    transition: background 0.3s, transform 0.2s; display: inline-block; margin-bottom: 20px;
-  }
-  .submit-btn:hover { background: var(--gold); transform: translateY(-2px); }
-  .submit-privacy { font-size: 11px; letter-spacing: 0.08em; color: #C8B0B8; display: block; }
-
-  /* THANK YOU */
-  .thankyou { display: none; text-align: center; padding: 40px 0 80px; }
-  .thankyou-line { width: 1px; height: 64px; background: linear-gradient(to bottom, transparent, var(--gold)); margin: 0 auto 40px; }
-  .thankyou h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 52px); font-weight: 300; line-height: 1.15; margin-bottom: 20px; }
-  .thankyou h2 em { font-style: italic; color: var(--gold); }
-  .thankyou p { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--muted); margin-bottom: 12px; max-width: 480px; margin-left: auto; margin-right: auto; }
 
   /* CTA FINAL */
-  .cta-final { background: #261018; text-align: center; padding: 120px 48px; position: relative; overflow: hidden; }
-  .cta-final-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(232,132,154,0.12) 0%, transparent 70%); }
-  .cta-final-line { width: 1px; height: 80px; background: linear-gradient(to bottom, transparent, var(--gold)); margin: 0 auto 48px; }
-  .cta-final h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 300; line-height: 1.1; color: var(--warm-white); margin-bottom: 24px; position: relative; z-index: 1; }
+  .cta-final {
+    background: #261018;
+    text-align: center;
+    padding: 120px 48px;
+    position: relative; overflow: hidden;
+  }
+  .cta-final-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(232,132,154,0.12) 0%, transparent 70%);
+  }
+  .cta-final-line {
+    width: 1px; height: 80px; background: linear-gradient(to bottom, transparent, var(--gold));
+    margin: 0 auto 48px;
+  }
+  .cta-final h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--warm-white);
+    margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
   .cta-final h2 em { font-style: italic; color: var(--gold-light); }
-  .cta-final p { font-size: 15px; font-weight: 300; line-height: 1.8; color: rgba(255,247,249,0.5); max-width: 480px; margin: 0 auto 48px; position: relative; z-index: 1; }
+  .cta-final p {
+    font-size: 15px; font-weight: 300; line-height: 1.8;
+    color: rgba(250,248,244,0.5);
+    max-width: 480px; margin: 0 auto 48px;
+    position: relative; z-index: 1;
+  }
   .cta-btn-large {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--dark); background: var(--gold); padding: 22px 60px; border: none; cursor: pointer;
-    transition: background 0.3s, transform 0.2s; text-decoration: none; display: inline-block; position: relative; z-index: 1;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 22px 60px;
+    border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    position: relative; z-index: 1;
   }
   .cta-btn-large:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .cta-note { margin-top: 24px; font-size: 12px; letter-spacing: 0.08em; color: rgba(255,247,249,0.25); position: relative; z-index: 1; }
+  .cta-note {
+    margin-top: 24px;
+    font-size: 12px; letter-spacing: 0.08em;
+    color: rgba(250,248,244,0.25);
+    position: relative; z-index: 1;
+  }
 
   /* FOOTER */
-  footer { background: #160A10; padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: rgba(255,247,249,0.3); letter-spacing: 0.08em; }
+  footer {
+    background: #160A10;
+    padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: rgba(250,248,244,0.3);
+    letter-spacing: 0.08em;
+  }
   .footer-links { display: flex; gap: 32px; }
-  .footer-links a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,247,249,0.25); text-decoration: none; transition: color 0.3s; }
+  .footer-links a {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(250,248,244,0.25); text-decoration: none;
+    transition: color 0.3s;
+  }
   .footer-links a:hover { color: var(--gold); }
 
   /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.15s; }
   .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
-    section, .apply-section { padding: 72px 24px; }
+    section { padding: 72px 24px; }
     .hero-content { padding: 0 24px; }
     .for-her-grid, .story-inner, .not-for-inner { grid-template-columns: 1fr; gap: 40px; }
     .included-grid { grid-template-columns: 1fr; }
@@ -333,7 +516,6 @@
     .ba-divider { display: none; }
     .investment-block { padding: 36px 24px; }
     .story-image-block { display: none; }
-    .form-row, .option-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
   }
 </style>
@@ -342,8 +524,8 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Khiana Smith</div>
-  <a href="https://calendly.com/khianasmithc/30min" class="nav-cta">Book a Free Call</a>
+  <div class="nav-logo">Your Name</div>
+  <a href="#apply" class="nav-cta">Book a Call</a>
 </nav>
 
 <!-- HERO -->
@@ -352,9 +534,14 @@
   <div class="hero-texture"></div>
   <div class="hero-gold-line"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Premium 1:1 Coaching with Khiana Smith · 12 Weeks</p>
-    <h1 class="hero-title">She's in there.<br>Let's bring <em>her</em> forward.</h1>
-    <p class="hero-subtitle">A 12-week private coaching experience combining nutrition, fitness, and mindset — for the woman who knows she's meant for more, and is finally ready to prove it to herself.</p>
+    <p class="hero-eyebrow">Premium 1:1 Coaching · 12 Weeks</p>
+    <h1 class="hero-title">
+      She's in there.<br>
+      Let's bring <em>her</em> forward.
+    </h1>
+    <p class="hero-subtitle">
+      A 12-week private coaching experience combining nutrition, fitness, and mindset — for the woman who knows she's meant for more, and is finally ready to prove it to herself.
+    </p>
   </div>
   <div class="hero-scroll">
     <span>Scroll</span>
@@ -389,7 +576,7 @@
   </div>
 </section>
 
-<!-- STORY -->
+<!-- STORY / CREDIBILITY -->
 <section class="story">
   <div class="container-wide">
     <div class="story-inner">
@@ -400,14 +587,29 @@
         <p>I made a decision to build something different. And then I went and built it — the confidence, the body, the life. Not because I was special. Because I stopped waiting for permission and started doing the work, inside and out.</p>
         <p>Now I help women do the same. And I don't just coach it — I live it. What I teach, I embody.</p>
         <div class="story-credentials">
-          <div class="credential"><div class="credential-title">Qualified</div><div class="credential-desc">Sports Nutritionist</div></div>
-          <div class="credential"><div class="credential-title">Qualified</div><div class="credential-desc">Personal Trainer</div></div>
-          <div class="credential"><div class="credential-title">Qualified</div><div class="credential-desc">Life Coach</div></div>
-          <div class="credential"><div class="credential-title">Certified</div><div class="credential-desc">NLP — Chris Howard</div></div>
+          <div class="credential">
+            <div class="credential-title">Qualified</div>
+            <div class="credential-desc">Sports Nutritionist</div>
+          </div>
+          <div class="credential">
+            <div class="credential-title">Qualified</div>
+            <div class="credential-desc">Personal Trainer</div>
+          </div>
+          <div class="credential">
+            <div class="credential-title">Qualified</div>
+            <div class="credential-desc">Life Coach</div>
+          </div>
+          <div class="credential">
+            <div class="credential-title">Certified</div>
+            <div class="credential-desc">NLP — Chris Howard</div>
+          </div>
         </div>
       </div>
       <div class="story-image-block reveal reveal-delay-1">
-        <img src="khiana-photo.jpeg" alt="Khiana Smith" style="width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; display:block;" />
+        <div class="story-image-placeholder">
+          <span>Your photo here</span>
+          <div class="image-note">Add from photoshoot</div>
+        </div>
         <div class="story-accent"></div>
       </div>
     </div>
@@ -421,20 +623,44 @@
     <h2 class="reveal"><em>Everything</em> you need.<br>Nothing you don't.</h2>
     <p class="included-intro reveal">This is not a cookie-cutter programme. Every part of your 12 weeks is built around you — your body, your starting point, your life.</p>
     <div class="included-grid">
-      <div class="included-item reveal"><div class="included-number">01</div><div class="included-title">Custom Nutrition Plan</div><div class="included-desc">A plan built for your body, your goals, and your lifestyle. Not a diet. A way of eating you can actually sustain and feel good doing.</div></div>
-      <div class="included-item reveal reveal-delay-1"><div class="included-number">02</div><div class="included-title">Personalised Training</div><div class="included-desc">Training designed around you — whether you're brand new to the gym or feel like you've lost your way. No guessing. No randomness.</div></div>
-      <div class="included-item reveal reveal-delay-2"><div class="included-number">03</div><div class="included-title">Mindset Work</div><div class="included-desc">The piece most coaches skip. We work on the beliefs, patterns, and inner dialogue keeping you stuck. Because the body follows where the mind leads.</div></div>
-      <div class="included-item reveal"><div class="included-number">04</div><div class="included-title">Weekly Check-ins</div><div class="included-desc">Consistent, personal check-ins throughout the week. You're never left to figure it out alone. I'm with you the whole way.</div></div>
-      <div class="included-item reveal reveal-delay-1"><div class="included-number">05</div><div class="included-title">Ongoing Adjustments</div><div class="included-desc">Your plan evolves with you. If something isn't working, we change it. Nothing is set in stone. This is a living, breathing programme.</div></div>
-      <div class="included-item reveal reveal-delay-2"><div class="included-number">06</div><div class="included-title">Direct Access to Me</div><div class="included-desc">Real support, not a portal. You get direct access to me — because real change doesn't happen on a schedule.</div></div>
+      <div class="included-item reveal">
+        <div class="included-number">01</div>
+        <div class="included-title">Custom Nutrition Plan</div>
+        <div class="included-desc">A plan built for your body, your goals, and your lifestyle. Not a diet. A way of eating you can actually sustain and feel good doing.</div>
+      </div>
+      <div class="included-item reveal reveal-delay-1">
+        <div class="included-number">02</div>
+        <div class="included-title">Personalised Training</div>
+        <div class="included-desc">Training designed around you — whether you're brand new to the gym or feel like you've lost your way. No guessing. No randomness.</div>
+      </div>
+      <div class="included-item reveal reveal-delay-2">
+        <div class="included-number">03</div>
+        <div class="included-title">Mindset Work</div>
+        <div class="included-desc">The piece most coaches skip. We work on the beliefs, patterns, and inner dialogue keeping you stuck. Because the body follows where the mind leads.</div>
+      </div>
+      <div class="included-item reveal">
+        <div class="included-number">04</div>
+        <div class="included-title">Weekly Check-ins</div>
+        <div class="included-desc">Consistent, personal check-ins throughout the week. You're never left to figure it out alone. I'm with you the whole way.</div>
+      </div>
+      <div class="included-item reveal reveal-delay-1">
+        <div class="included-number">05</div>
+        <div class="included-title">Ongoing Adjustments</div>
+        <div class="included-desc">Your plan evolves with you. If something isn't working, we change it. Nothing is set in stone. This is a living, breathing programme.</div>
+      </div>
+      <div class="included-item reveal reveal-delay-2">
+        <div class="included-number">06</div>
+        <div class="included-title">Direct Access to Me</div>
+        <div class="included-desc">Real support, not a portal. You get direct access to me — because real change doesn't happen on a schedule.</div>
+      </div>
     </div>
     <div class="investment-block reveal">
       <div class="investment-left">
-        <h3>Coached by Khiana Smith</h3>
-        <div class="investment-price" style="font-size:32px; margin-top:8px;">Ready to make a change?</div>
-        <div class="investment-detail">Book a free 20-minute discovery call — no pressure, no obligation.</div>
+        <h3>Your investment</h3>
+        <div class="investment-price">$85 <span>/ week</span></div>
+        <div class="investment-detail">12-week commitment · Billed weekly via Stripe</div>
       </div>
-      <a href="https://calendly.com/khianasmithc/30min" class="investment-cta">Book Your Free Call</a>
+      <a href="#apply" class="investment-cta">Book Your Discovery Call</a>
     </div>
   </div>
 </section>
@@ -456,7 +682,9 @@
           <li>Exhausted from being your own worst enemy</li>
         </ul>
       </div>
-      <div class="ba-divider"><div class="ba-divider-icon">→</div></div>
+      <div class="ba-divider">
+        <div class="ba-divider-icon">→</div>
+      </div>
       <div class="ba-col ba-after">
         <div class="ba-label">Where you're going</div>
         <ul class="ba-list">
@@ -491,11 +719,11 @@
         <div class="section-label">This isn't for you if</div>
         <h2>You're looking for a <em>shortcut</em>.</h2>
         <ul class="check-list">
-          <li><span class="icon" style="color:var(--gold)">—</span> You're not willing to put in real effort</li>
-          <li><span class="icon" style="color:var(--gold)">—</span> You want someone to do the work for you</li>
-          <li><span class="icon" style="color:var(--gold)">—</span> You're half-committed and already planning your exit</li>
-          <li><span class="icon" style="color:var(--gold)">—</span> You just want a meal plan with no accountability</li>
-          <li><span class="icon" style="color:var(--gold)">—</span> You're not ready to bet on yourself yet</li>
+          <li><span class="icon" style="color:#B8956A">—</span> You're not willing to put in real effort</li>
+          <li><span class="icon" style="color:#B8956A">—</span> You want someone to do the work for you</li>
+          <li><span class="icon" style="color:#B8956A">—</span> You're half-committed and already planning your exit</li>
+          <li><span class="icon" style="color:#B8956A">—</span> You just want a meal plan with no accountability</li>
+          <li><span class="icon" style="color:#B8956A">—</span> You're not ready to bet on yourself yet</li>
         </ul>
       </div>
     </div>
@@ -512,11 +740,15 @@
     </div>
     <div class="faq-item reveal">
       <div class="faq-q">I've tried coaching before and it didn't work. Why would this be different?</div>
-      <div class="faq-a">Because most coaching only addresses one thing — the food or the training. This programme works on all three: your nutrition, your training, and the mindset underneath it. That's usually what's been missing.</div>
+      <div class="faq-a">Because most coaching only addresses one thing — the food or the training. This programme works on all three: your nutrition, your training, and the mindset underneath it. That's usually what's been missing. The discovery call will help us both figure out if this is genuinely the right fit for you.</div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q">I'm not sure I can afford it.</div>
-      <div class="faq-a">Come to the discovery call and we can talk through everything honestly — including investment. It's a relaxed conversation, no pressure at all.</div>
+      <div class="faq-a">$85 a week is $12 a day. That's less than most people spend on coffee, takeaway, or things they buy to feel better temporarily. This is an investment in actually feeling better — permanently. That said, come to the discovery call and let's talk honestly about it.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">What does the discovery call involve?</div>
+      <div class="faq-a">It's a relaxed 20-minute conversation — no pressure, no hard sell. We'll talk about where you are, what you're looking for, and whether this programme is the right fit. If it's not, I'll tell you honestly.</div>
     </div>
     <div class="faq-item reveal">
       <div class="faq-q">I don't like running or intense training. Is this still for me?</div>
@@ -530,16 +762,16 @@
   <div class="cta-final-bg"></div>
   <div class="cta-final-line"></div>
   <h2 class="reveal">The version of you<br>that's waiting — <em>she's ready</em>.</h2>
-  <p class="reveal">The discovery call is free, relaxed, and zero pressure. It's just a 20-minute conversation to see if this is the right fit. If it's not, I'll tell you honestly. But if it is — this might be the most important call you ever book for yourself.</p>
+  <p class="reveal">The discovery call is free, relaxed, and zero pressure. It's just a conversation to see if this is right for you. If it's not, I'll tell you honestly. But if it is — this might be the most important 20 minutes you invest in yourself.</p>
   <a href="https://calendly.com/khianasmithc/30min" class="cta-btn-large reveal">Book Your Free Discovery Call</a>
-  <p class="cta-note reveal">Free 20-minute call · No pressure · Limited spots available</p>
+  <p class="cta-note reveal">Limited spots available · 12-week commitment · $85/week</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Khiana Smith</div>
+  <div class="footer-logo">Your Name</div>
   <div class="footer-links">
-    <a href="https://instagram.com/khianasmith">Instagram</a>
+    <a href="https://instagram.com/yourhandle">Instagram</a>
     <a href="#">AYRA App</a>
   </div>
 </footer>
@@ -549,32 +781,12 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
-
-  // Form submit
-  document.getElementById('applicationForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.querySelector('.submit-btn');
-    btn.textContent = 'Sending...';
-    btn.style.opacity = '0.7';
-    const form = e.target;
-    const data = new FormData(form);
-    const goals = [...form.querySelectorAll('input[name="goals"]:checked')].map(el => el.value).join(', ');
-    const body = `NEW COACHING APPLICATION\n========================\n\nNAME: ${data.get('firstName')} ${data.get('lastName')}\nEMAIL: ${data.get('email')}\nPHONE: ${data.get('phone')}\nINSTAGRAM: ${data.get('instagram') || 'Not provided'}\n\nFITNESS LEVEL: ${data.get('fitnessLevel') || 'Not selected'}\n\nWHERE THEY'RE AT NOW:\n${data.get('currentSituation')}\n\nGOALS: ${goals || 'Not selected'}\n\nDREAM OUTCOME:\n${data.get('dreamOutcome')}\n\nWHAT THEY'VE TRIED BEFORE:\n${data.get('triedBefore')}\n\nWHAT'S STOPPED THEM:\n${data.get('whatStopped')}\n\nWHY KHIANA:\n${data.get('whyKhiana')}\n\nWHY NOW:\n${data.get('whyNow')}\n\nCOMMITMENT LEVEL: ${data.get('commitment') || 'Not selected'}\n\nANYTHING ELSE:\n${data.get('anythingElse') || 'Nothing added'}`;
-    try {
-      await fetch('https://formspree.io/f/mpqjegpj', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.get('email'), name: `${data.get('firstName')} ${data.get('lastName')}`, _subject: `New Coaching Application — ${data.get('firstName')} ${data.get('lastName')}`, message: body, _replyto: data.get('email') })
-      });
-    } catch(err) {}
-    form.style.display = 'none';
-    document.getElementById('thankyou').style.display = 'block';
-    window.scrollTo({ top: document.getElementById('apply').offsetTop - 80, behavior: 'smooth' });
-  });
 </script>
 
 </body>

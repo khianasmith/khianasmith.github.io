@@ -583,7 +583,7 @@ footer {
   function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`; requestAnimationFrame(animRing); }
   animRing();
 
-  // Form submit — AJAX to Formspree so success state shows without redirect
+  // Form submit — AJAX to Formspree, sending as JSON (required for CORS)
   const form = document.getElementById('applicationForm');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -592,31 +592,46 @@ footer {
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
+    // Collect all form data into a plain object (JSON works with Formspree CORS)
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+      if (data[key]) {
+        // Handle multiple checkboxes with same name
+        data[key] = [].concat(data[key], value);
+      } else {
+        data[key] = value;
+      }
+    });
+
     try {
       const response = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       });
 
       if (response.ok) {
-        // Hide form, show success
         form.style.display = 'none';
         const success = document.getElementById('successState');
         success.classList.add('visible');
         success.style.display = 'block';
         window.scrollTo({ top: success.offsetTop - 100, behavior: 'smooth' });
       } else {
-        const data = await response.json();
-        const msg = (data && data.errors)
-          ? data.errors.map(err => err.message).join(', ')
-          : 'Something went wrong. Please try again or email Khiana directly.';
+        const json = await response.json().catch(() => ({}));
+        const msg = (json && json.errors)
+          ? json.errors.map(err => err.message).join(', ')
+          : `Error ${response.status}: Please try again or contact Khiana directly.`;
         alert(msg);
         btn.textContent = 'Submit My Application';
         btn.disabled = false;
       }
     } catch (err) {
-      alert('Something went wrong. Please check your connection and try again.');
+      console.error('Submission error:', err);
+      alert('Network error — please check your connection and try again.');
       btn.textContent = 'Submit My Application';
       btn.disabled = false;
     }

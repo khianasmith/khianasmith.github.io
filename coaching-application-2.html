@@ -372,6 +372,7 @@ footer {
   <div class="form-wrap">
 
     <form id="applicationForm" action="https://formspree.io/f/mpqjegpj" method="POST">
+      <input type="hidden" name="_next" value="https://khianasmith.github.io/coaching-application-2.html?success">
 
       <!-- BLOCK 1: About you -->
       <div class="form-block">
@@ -583,33 +584,20 @@ footer {
   function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`; requestAnimationFrame(animRing); }
   animRing();
 
-  // Form submit
+  // Form submit — show loading state, native submit to Formspree
   const form = document.getElementById('applicationForm');
-  const success = document.getElementById('successState');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  form.addEventListener('submit', (e) => {
     const btn = form.querySelector('.btn-submit');
     btn.textContent = 'Sending...';
     btn.disabled = true;
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        form.style.display = 'none';
-        success.classList.add('visible');
-        window.scrollTo({ top: document.querySelector('.form-section').offsetTop - 80, behavior: 'smooth' });
-      } else {
-        btn.textContent = 'Something went wrong — please try again';
-        btn.disabled = false;
-      }
-    } catch(err) {
-      btn.textContent = 'Something went wrong — please try again';
-      btn.disabled = false;
-    }
+    // Let form submit natively to Formspree
   });
+
+  // Show success if redirected back with ?success
+  if (window.location.search.includes('success')) {
+    document.getElementById('applicationForm').style.display = 'none';
+    document.getElementById('successState').classList.add('visible');
+  }
 </script>
 </body>
 </html>
